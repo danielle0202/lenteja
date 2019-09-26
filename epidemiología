@@ -1,0 +1,79 @@
+Medidas de ocurrencia y de asociación
+
+En esta sesión examinaremos cómo se computan los valores de prevalencia y se realizarán tablas de contingencia.
+
+Objetivos específicos:
+
+Aprender a interpretar medidas de ocurrencia
+Aprender cómo hacer una tabla ara un manuscrito de publicación
+Aprender a interpretar medidas de asociación
+NOTA: Recuerde que la población estudiada en la base es de mujeres colombianas
+
+Pasos:
+
+Abra el documento de R creado para el taller 1
+
+Corra las líneas de código de:
+selección del directorio de trabajo
+cargue de librerías
+importación de base de datos
+conversión de variables
+re-codificación de variables
+setwd("\\Users\\mariaalejandra\\Taller1")
+library(epiDisplay) #Esta librería contiene funciones necesarias para análisis epidemiológicos
+library(car) #Esta librería contiene funciones necesarias para análisis estadísticos
+library(plyr) #Esta ibrería contiene funciones para transformación de datos
+library(psych) #Esta ibrería contiene funciones análisis de variables contínuas
+base<-read.csv("taller1.csv")
+base$variable<-as.factor(base$variable)
+base$variableNueva<-cut(base$VariableVieja,breaks = c(min,corte,max),labels = c("1","0"))
+base$variableNueva<-recode(base$variableVieja,"c('1', '2','3')='0';c('4','5','6') = '1';else=NA")
+Comience a correr los procedimientos del taller # 2 sin borrar el trabajo realizado para el taller # 1
+
+Calcule la prevalencia de cumplir con las recomendaciones de AF en tiempo libre y caminar en tiempo libre. Este es el código en R que necesita: (utilice la variable nueva)
+
+Para obtener la frecuencia utilice:
+
+table(base$variable)
+Para obtener el porcentaje utilice:
+
+prop.table(table(base$variable))
+Calcule la prevalencia de cumplir con las recomendaciones de AF en tiempo libre después de estratificar por TODAS las variables independientes NUEVAS. No olvide que para este taller vamos a utilizar sólo las variables nuevas que creamos en el taller # 1 (revise el diccionario de variables para identificar las variables nuevas)
+Este es un elemplo del código de R que necesita. Utilícelo para el resto de variables nuevas:
+
+Para obtener la frecuencia utilice:
+
+table(base$variable1,base$variable2)
+Para obtener el porcentaje de cada celda utilice:
+
+prop.table(table(base$variable1, base$variable2))
+Para obtener el porcentaje por fila de cada celda utilice:
+
+prop.table(table(base$variable1, base$variable2),1)
+Para obtener el porcentaje por columna de cada celda utilice:
+
+prop.table(table(base$variable1, base$variable2),2)
+TRABAJO ESCRITO PARA ENTREGAR (OJO SOLO ENTREGAR LAS RESPUESTAS A ESTAS PREGUNTAS NO ENTREGAR CODIGO) NO SE RECIBEN TRBAJOS POR EMAIL Entrega del taller el en clase.
+
+PRIMERA PARTE
+
+¿Cuál es la prevalencia de cumplir con las recomendaciones de AF en tiempo libre en la población de adultos de Colombia al año 2010?
+¿Qué tipo de estudio se requeriría si quisiera estimar la incidencia de cumplir con las recomendaciones en una población de mujeres Colombianas en el año 2012?
+¿Cómo calcularía la incidencia (describa numerador y denominador) del estudio de la pregunta #2?
+Describa el diseño del estudio de la pregunta #2.
+¿Qué tipo de estudio diseñaría si quisiera evaluar la asociación entre hábitos alimenticios y desnutrición mujeres de Bogotá?
+Describa el diseño del estudio de la pregunta #5.
+Complete la siguiente tabla con los resultados del taller. Incluyendo las variables nuevas del codebook, excepto cumplir con las recomendaciones caminando en tiempo libre.
+Variable	Prevalencia de cumplir con las recomendaciones de AF en tiempo libre
+Edad	
+18 - 29	
+30-64	
+En un párrafo describa los resultados de la tabla.
+
+Complete la siguiente tabla con los resultados del taller. Incluyendo las variables nuevas del codebook, excepto cumplir con las recomendaciones de AF en tiempo libre.
+
+Variable	Prevalencia de cumplir con las recomendaciones caminando en tiempo libre
+Edad	
+18 - 29	
+30-64	
+En un párrafo describa los resultados de la tabla.
